@@ -157,6 +157,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 16,
     backgroundColor: '#F3F4F6', 
+    borderRadius: 9999,
+    alignItems: 'center',
     borderWidth: 1,
     borderColor: theme.border,
   },

@@ -92,7 +92,11 @@ export default function TasksScreen() {
               value={inputText}
               onChangeText={setInputText}
             />
-            <TouchableOpacity onPress={handleAddTask} style={styles.addButton}>
+            <TouchableOpacity 
+              onPress={handleAddTask} 
+              style={[styles.addButton, !inputText.trim() && styles.addButtonDisabled]}
+              disabled={!inputText.trim()}
+            >
               <Ionicons name="add" size={24} color="#FFF" />
             </TouchableOpacity>
           </View>
@@ -205,5 +209,10 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 4 },
     elevation: 4,
+  },
+  addButtonDisabled: {
+    opacity: 0.7,
+    shadowOpacity: 0,
+    elevation: 0,
   },
 });
