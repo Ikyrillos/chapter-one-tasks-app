@@ -1,3 +1,4 @@
+import { Colors } from '@/core/constants/theme';
 import { Ionicons } from '@expo/vector-icons'; // Built-in with Expo
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -7,19 +8,28 @@ interface TaskItemProps {
   task: Task;
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
+  onEdit: (task: Task) => void;
 }
 
-export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
+export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, onEdit }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity 
-        style={styles.contentContainer} 
+
+      <TouchableOpacity onPress={() => onEdit(task)}>
+        <Ionicons name="pencil-outline" size={24} color="#2196F3" style={
+          { marginRight: 12}
+        } />
+      </TouchableOpacity>
+
+      
+      <TouchableOpacity
+        style={styles.contentContainer}
         onPress={() => onToggle(task.id)}
       >
-        <Ionicons 
-          name={task.isCompleted ? "checkbox" : "square-outline"} 
-          size={24} 
-          color={task.isCompleted ? "#4CAF50" : "#666"} 
+        <Ionicons
+          name={task.isCompleted ? "checkbox" : "square-outline"}
+          size={24}
+          color={task.isCompleted ? "#4CAF50" : "#666"}
         />
         <Text style={[styles.text, task.isCompleted && styles.textCompleted]}>
           {task.title}
@@ -33,34 +43,55 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) 
   );
 };
 
+
+const theme = Colors.light;
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 12,
+    backgroundColor: theme.background, // #FFFFFF
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    borderRadius: 16,
     marginBottom: 12,
-    shadowColor: 'rgba(0, 0, 0, 0.1)',
-    shadowOpacity: 0.05,
-    shadowRadius: 5,
-    elevation: 2,
+    
+    // Modern "Floating" Card Shadow
+    borderWidth: 1,
+    borderColor: theme.border, // #E5E7EB - Matches your global border color
+    shadowColor: '#0000005b',
+    shadowOpacity: 0.02,
+    shadowRadius:4,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2, 
   },
   contentContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 14, 
   },
   text: {
     fontSize: 16,
-    color: '#333',
+    fontWeight: '500', 
+    color: theme.text, 
+    lineHeight: 22,
+    flex: 1, 
   },
   textCompleted: {
     textDecorationLine: 'line-through',
-    color: '#AAA',
+    color: theme.tabIconDefault,
+    fontStyle: 'italic', 
+    opacity: 0.8, 
   },
   deleteButton: {
-    padding: 4,
+    padding: 10, 
+    // We use a very light tint of your primary color here. 
+    // Since 'primary' is #EF4444, this is the matching 50/100 tint from Tailwind
+    backgroundColor: '#FEF2F2', 
+    borderRadius: 12, 
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 8,
   },
 });

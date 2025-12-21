@@ -7,49 +7,73 @@ describe('useTaskController Logic', () => {
     expect(result.current.tasks).toEqual([]);
   });
 
-  it('should add a task', () => {
+  it('should add a task successfully', () => {
     const { result } = renderHook(() => useTaskController());
 
     act(() => {
-      result.current.addTask('Buy Milk');
+      result.current.addTask('Buy Groceries');
     });
 
+    // Verify functionality without needing to know the exact ID
     expect(result.current.tasks.length).toBe(1);
-    expect(result.current.tasks[0].title).toBe('Buy Milk');
+    expect(result.current.tasks[0].title).toBe('Buy Groceries');
     expect(result.current.tasks[0].isCompleted).toBe(false);
-  });
-
-  it('should toggle a task', () => {
-    const { result } = renderHook(() => useTaskController());
-
-    // 1. Add Task
-    act(() => {
-      result.current.addTask('Walk Dog');
-    });
-    
-    const taskId = result.current.tasks[0].id;
-
-    // 2. Toggle it
-    act(() => {
-      result.current.toggleTaskCompletion(taskId);
-    });
-
-    expect(result.current.tasks[0].isCompleted).toBe(true);
+    expect(result.current.tasks[0].id).toBeDefined(); // Just ensure an ID exists
   });
 
   it('should delete a task', () => {
     const { result } = renderHook(() => useTaskController());
 
+    // 1. Add a task
     act(() => {
-      result.current.addTask('Delete Me');
+      result.current.addTask('Task to Delete');
     });
-    
-    const taskId = result.current.tasks[0].id;
 
+    const taskToDelete = result.current.tasks[0];
+
+    // 2. Delete it using the ID we just generated
     act(() => {
-      result.current.deleteTask(taskId);
+      result.current.deleteTask(taskToDelete.id);
     });
 
     expect(result.current.tasks.length).toBe(0);
+  });
+
+  it('should toggle task completion', () => {
+    const { result } = renderHook(() => useTaskController());
+
+    act(() => {
+      result.current.addTask('Walk the dog');
+    });
+
+    const task = result.current.tasks[0];
+
+    // Toggle True
+    act(() => {
+      result.current.toggleTaskCompletion(task.id);
+    });
+    expect(result.current.tasks[0].isCompleted).toBe(true);
+
+    // Toggle False
+    act(() => {
+      result.current.toggleTaskCompletion(task.id);
+    });
+    expect(result.current.tasks[0].isCompleted).toBe(false);
+  });
+
+  it('should update task title', () => {
+    const { result } = renderHook(() => useTaskController());
+
+    act(() => {
+      result.current.addTask('Old Title');
+    });
+
+    const task = result.current.tasks[0];
+
+    act(() => {
+      result.current.updateTask(task.id, 'New Updated Title');
+    });
+
+    expect(result.current.tasks[0].title).toBe('New Updated Title');
   });
 });
