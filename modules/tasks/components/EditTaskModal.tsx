@@ -97,7 +97,8 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
     </Modal>
   );
 };
-// We define a shorthand to keep the code clean
+
+
 const theme = Colors.light; 
 
 const styles = StyleSheet.create({
@@ -131,18 +132,18 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '800', 
-    color: theme.text, // #1F2937 (Dark Charcoal)
+    color: theme.text, 
     letterSpacing: -0.5,
   },
   input: {
     borderWidth: 1,
-    borderColor: theme.border, // #E5E7EB
+    borderColor: theme.border, 
     borderRadius: 16,
     padding: 16,
     fontSize: 16,
     marginBottom: 24,
-    color: theme.text, // #1F2937
-    backgroundColor: theme.card, // #F9FAFB (Subtle Gray)
+    color: theme.text, 
+    backgroundColor: theme.card, 
     textAlignVertical: 'top',
     minHeight: 120,           
     maxHeight: 200,          
@@ -155,19 +156,17 @@ const styles = StyleSheet.create({
   cancelButton: {
     flex: 1,
     paddingVertical: 16,
-    backgroundColor: '#F3F4F6', // (This is slightly darker than card, could stay hardcoded or use a secondary var)
-    borderRadius: 9999,
-    alignItems: 'center',
+    backgroundColor: '#F3F4F6', 
     borderWidth: 1,
-    borderColor: theme.border, // #E5E7EB
+    borderColor: theme.border,
   },
   saveButton: {
     flex: 1,
     paddingVertical: 16,
-    backgroundColor: theme.primary, // #EF4444 (Brand Red)
+    backgroundColor: theme.primary, 
     borderRadius: 9999,
     alignItems: 'center',
-    shadowColor: theme.primary, // Red glow
+    shadowColor: theme.primary,
     shadowOpacity: 0.3,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 4 },
@@ -175,12 +174,12 @@ const styles = StyleSheet.create({
   },
   cancelText: {
     fontSize: 16,
-    color: theme.textSecondary, // #4B5563
+    color: theme.textSecondary, 
     fontWeight: '600',
   },
   saveText: {
     fontSize: 16,
-    color: '#FFFFFF', // Always white for button text
+    color: '#FFFFFF', 
     fontWeight: '700',
   },
 });

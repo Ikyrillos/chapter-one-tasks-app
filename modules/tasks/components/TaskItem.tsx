@@ -56,9 +56,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     marginBottom: 12,
     
-    // Modern "Floating" Card Shadow
+    // "Floating" Card Shadow
     borderWidth: 1,
-    borderColor: theme.border, // #E5E7EB - Matches your global border color
+    borderColor: theme.border, 
     shadowColor: '#0000005b',
     shadowOpacity: 0.02,
     shadowRadius:4,
@@ -86,8 +86,6 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     padding: 10, 
-    // We use a very light tint of your primary color here. 
-    // Since 'primary' is #EF4444, this is the matching 50/100 tint from Tailwind
     backgroundColor: '#FEF2F2', 
     borderRadius: 12, 
     justifyContent: 'center',

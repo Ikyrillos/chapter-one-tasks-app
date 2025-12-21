@@ -3,6 +3,7 @@ import { useTaskController } from '@/modules/tasks/hooks/useTaskController';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
   FlatList,
@@ -45,13 +46,9 @@ export default function TasksScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* FIX: Wrap the ENTIRE content in KeyboardAvoidingView.
-        This ensures the FlatList shrinks and the Input stays visible.
-      */}
       <KeyboardAvoidingView 
         style={{ flex: 1 }} 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        // Offset is crucial: Adjusts for Status Bar / SafeArea on iOS
         keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0} 
       >
         
@@ -75,7 +72,12 @@ export default function TasksScreen() {
             )}
             ListEmptyComponent={
               <View style={styles.emptyState}>
-                <Text style={styles.emptyText}>No tasks yet. Add one below!</Text>
+                <View style={styles.emptyIconContainer}>
+                  <Icon name="check-circle-o" size={80} color="#e6b7b2ff" />
+                </View>
+                <Text style={styles.emptyTitle}>All Clear!</Text>
+                <Text style={styles.emptyText}>You have no tasks at the moment.</Text>
+                <Text style={styles.emptySubtext}>Tap the + button below to get started</Text>
               </View>
             }
           />
@@ -110,25 +112,24 @@ export default function TasksScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF', // Clean white background (matches website body)
+    backgroundColor: '#FFFFFF',
   },
   header: {
-    paddingHorizontal: 24, // Wider spacing for a modern look
+    paddingHorizontal: 24, 
     paddingTop: 20,
     paddingBottom: 20,
-    // Optional: add a subtle border like the website's nav bar
     borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6', 
   },
   title: {
-    fontSize: 32, // Larger, bolder header
-    fontWeight: '800', // Extra bold (matches "About Chapter One")
-    color: '#111827', // Dark Charcoal
+    fontSize: 32, 
+    fontWeight: '800', 
+    color: '#111827', 
     letterSpacing: -0.5,
   },
   subtitle: {
     fontSize: 16,
-    color: '#4B5563', // Soft gray for body text
+    color: '#4B5563', 
     marginTop: 8,
     lineHeight: 22,
   },
@@ -138,13 +139,34 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   emptyState: {
-    marginTop: 80,
+    marginTop: 60,
     alignItems: 'center',
+    paddingHorizontal: 32,
+  },
+  emptyIconContainer: {
+    marginBottom: 24,
+    opacity: 0.9,
+  },
+  emptyTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#1F2937',
+    marginBottom: 8,
+    letterSpacing: -0.3,
   },
   emptyText: {
-    color: '#9CA3AF',
+    color: '#6B7280',
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '400',
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+  emptySubtext: {
+    color: '#9CA3AF',
+    fontSize: 14,
+    fontWeight: '400',
+    marginTop: 12,
+    textAlign: 'center',
   },
   inputWrapper: {
     padding: 24,
