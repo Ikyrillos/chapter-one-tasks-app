@@ -5,7 +5,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 ## Demo
 
 ### Video Demo
-![Demo Video](demo_media/record.webm)
+[Watch Demo Video](https://drive.google.com/file/d/1EdfGkOnxZJbOd3YFS0td_mD5MWj9yeJJ/view?usp=sharing)
 
 ### Screenshots
 
