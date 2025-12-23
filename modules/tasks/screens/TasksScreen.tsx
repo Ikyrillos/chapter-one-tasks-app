@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {
+  Alert,
   FlatList,
   Keyboard,
   KeyboardAvoidingView,
@@ -44,6 +45,25 @@ export default function TasksScreen() {
     setTaskToEdit(null);
   };
 
+  const handleDeletePress = (task: Task) => {
+    Alert.alert(
+      'Delete Task',
+      `Are you sure you want to delete "${task.title}"?`,
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: () => deleteTask(task.id)
+        }
+      ],
+      { cancelable: true }
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView 
@@ -66,7 +86,7 @@ export default function TasksScreen() {
               <TaskItem 
                 task={item} 
                 onToggle={toggleTaskCompletion} 
-                onDelete={deleteTask} 
+                onDelete={handleDeletePress} 
                 onEdit={handleEditPress}
               />
             )}

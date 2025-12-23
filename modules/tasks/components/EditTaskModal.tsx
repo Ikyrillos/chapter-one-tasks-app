@@ -2,16 +2,16 @@ import { Colors } from '@/core/constants/theme'; // Adjust path if needed
 import { Ionicons } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Modal,
-  Platform,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View
+    Keyboard,
+    KeyboardAvoidingView,
+    Modal,
+    Platform,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View
 } from 'react-native';
 import { Task } from '../models/Task';
 
@@ -49,14 +49,12 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
       transparent={true}
       onRequestClose={onClose}
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.overlay}>
-          
-          {/* FIX: Use 'padding' for both platforms to force the push-up effect */}
-          <KeyboardAvoidingView 
-            behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
-            style={styles.keyboardView}
-          >
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.overlay}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.overlayInner}>
             <TouchableWithoutFeedback>
               <View style={styles.modalContainer}>
                 
@@ -90,10 +88,9 @@ export const EditTaskModal: React.FC<EditTaskModalProps> = ({
 
               </View>
             </TouchableWithoutFeedback>
-          </KeyboardAvoidingView>
-
-        </View>
-      </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
@@ -107,8 +104,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)', 
     justifyContent: 'flex-end', 
   },
-  keyboardView: {
-    width: '100%',
+  overlayInner: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   modalContainer: {
     backgroundColor: theme.background, // #FFFFFF

@@ -7,7 +7,7 @@ import { Task } from '../models/Task';
 interface TaskItemProps {
   task: Task;
   onToggle: (id: string) => void;
-  onDelete: (id: string) => void;
+  onDelete: (task: Task) => void;
   onEdit: (task: Task) => void;
 }
 
@@ -36,7 +36,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => onDelete(task.id)} style={styles.deleteButton}>
+      <TouchableOpacity onPress={() => onDelete(task)} style={styles.deleteButton}>
         <Ionicons name="trash-outline" size={24} color="#FF5252" />
       </TouchableOpacity>
     </View>

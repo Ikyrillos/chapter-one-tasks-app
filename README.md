@@ -2,6 +2,37 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
+## Demo
+
+### Video Demo
+![Demo Video](demo_media/record.webm)
+
+### Screenshots
+
+#### Empty State
+![Tasks Empty State](demo_media/Tasks%20Empty%20State.png)
+
+#### Create a New Task
+![Create a new task](demo_media/Create%20a%20new%20task.png)
+
+#### List of Tasks
+![List of tasks](demo_media/List%20of%20tasks.png)
+
+#### Long List of Tasks
+![Long list of tasks](demo_media/Long%20list%20of%20tasks.png)
+
+#### Edit Task
+![Edit Task](demo_media/Edit%20Task.png)
+
+#### Delete Task
+![Delete Task](demo_media/Delete%20Task.png)
+
+#### Tasks Marked Completed
+![Tasks marked Completed](demo_media/Tasks%20marked%20Completed.png)
+
+#### App Test Cases
+![App test cases](demo_media/app_test_cases.png)
+
 ## Get started
 
 1. Install dependencies
@@ -24,6 +55,14 @@ In the output, you'll find options to open the app in a
 - [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Run tests
+
+Run the test suite using Jest:
+
+```bash
+npm test
+```
 
 ## Get a fresh project
 
